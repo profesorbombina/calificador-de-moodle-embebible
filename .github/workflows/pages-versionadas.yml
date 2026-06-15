@@ -1,4 +1,4 @@
-name: Publicar versiones en GitHub Pages
+name: Publicar vista previa V2
 
 on:
   push:
@@ -7,27 +7,22 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: publicar-preview-v2
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  publish-preview:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Preparar version estable
+      - name: Preparar sitio publicado
         uses: actions/checkout@v4
         with:
           ref: main
-          path: stable
+          path: published
 
       - name: Preparar vista previa V2
         uses: actions/checkout@v4
@@ -35,22 +30,20 @@ jobs:
           ref: codex/v2
           path: preview
 
-      - name: Configurar GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Preparar artefacto
+      - name: Actualizar exclusivamente la ruta V2
         shell: bash
         run: |
-          mkdir -p site/v2
-          cp stable/index.html stable/README.md site/
-          cp preview/index.html preview/README.md site/v2/
-          touch site/.nojekyll
+          mkdir -p published/v2
+          cp preview/index.html preview/README.md published/v2/
+          touch published/.nojekyll
 
-      - name: Subir artefacto
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-      - name: Publicar
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publicar cambios en main
+        working-directory: published
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .nojekyll v2/index.html v2/README.md
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: actualizar vista previa v2"
+          git push origin main

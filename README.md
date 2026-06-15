@@ -4,12 +4,12 @@ Versión de archivo único preparada para publicar mediante GitHub Pages e incor
 
 ## Versiones publicadas
 
-GitHub Pages se despliega mediante `.github/workflows/pages-versionadas.yml`:
+GitHub Pages continúa publicando la rama `main` y el workflow `.github/workflows/pages-versionadas.yml` actualiza la vista previa:
 
-- `/`: versión estable construida desde `main`.
-- `/v2/`: vista previa de la versión 2 construida desde `codex/v2`.
+- `/`: versión estable conservada en la raíz de `main`.
+- `/v2/`: copia automática de la versión 2 desarrollada en `codex/v2`.
 
-Cada cambio publicado en `codex/v2` actualiza la vista previa sin modificar la versión estable.
+Cada cambio publicado en `codex/v2` actualiza solamente la carpeta `v2/` de `main`, sin modificar el `index.html` estable.
 
 ## Importante
 
@@ -34,9 +34,9 @@ El generador combina:
 
 ## Publicación
 
-1. En GitHub, abrí **Settings > Pages**.
-2. En **Build and deployment > Source**, seleccioná **GitHub Actions**.
-3. Ejecutá el workflow **Publicar versiones en GitHub Pages**.
+1. GitHub Pages debe publicar la rama `main` y la carpeta raíz.
+2. Publicá los cambios embebibles en `codex/v2`.
+3. El workflow **Publicar vista previa V2** actualizará automáticamente `main/v2/`.
 4. Usá la URL raíz para V1 y agregá `/v2/` para revisar V2.
 
 ## Incorporación en Google Sites
