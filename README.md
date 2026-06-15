@@ -2,14 +2,12 @@
 
 Versión de archivo único preparada para publicar mediante GitHub Pages e incorporar en Google Sites.
 
-## Versiones publicadas
+## Publicación versionada
 
-GitHub Pages continúa publicando la rama `main` y el workflow `.github/workflows/pages-versionadas.yml` actualiza la vista previa:
+La publicación pública versionada se administra desde el repositorio principal `calificador-de-moodle`:
 
-- `/`: versión estable conservada en la raíz de `main`.
-- `/v2/`: copia automática de la versión 2 desarrollada en `codex/v2`.
-
-Cada cambio publicado en `codex/v2` actualiza solamente la carpeta `v2/` de `main`, sin modificar el `index.html` estable.
+- `https://profesorbombina.github.io/calificador-de-moodle/`: versión estable.
+- `https://profesorbombina.github.io/calificador-de-moodle/v2/`: vista previa V2.
 
 ## Importante
 
@@ -34,10 +32,9 @@ El generador combina:
 
 ## Publicación
 
-1. GitHub Pages debe publicar la rama `main` y la carpeta raíz.
-2. Publicá los cambios embebibles en `codex/v2`.
-3. El workflow **Publicar vista previa V2** actualizará automáticamente `main/v2/`.
-4. Usá la URL raíz para V1 y agregá `/v2/` para revisar V2.
+1. Publicá los cambios del proyecto principal en `codex/v2`.
+2. El repositorio principal generará y actualizará automáticamente la vista previa.
+3. Este repositorio conserva la versión embebible sincronizada para Google Sites.
 
 ## Incorporación en Google Sites
 
