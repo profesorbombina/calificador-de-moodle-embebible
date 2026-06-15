@@ -2,6 +2,15 @@
 
 Versión de archivo único preparada para publicar mediante GitHub Pages e incorporar en Google Sites.
 
+## Versiones publicadas
+
+GitHub Pages se despliega mediante `.github/workflows/pages-versionadas.yml`:
+
+- `/`: versión estable construida desde `main`.
+- `/v2/`: vista previa de la versión 2 construida desde `codex/v2`.
+
+Cada cambio publicado en `codex/v2` actualiza la vista previa sin modificar la versión estable.
+
 ## Importante
 
 `index.html` es generado automáticamente desde el proyecto principal `calificador-de-moodle-v1`.
@@ -25,10 +34,10 @@ El generador combina:
 
 ## Publicación
 
-1. Creá un repositorio para este proyecto.
-2. Subí `index.html` y `README.md`.
-3. Activá GitHub Pages desde la rama `main` y la carpeta raíz.
-4. Copiá la URL publicada.
+1. En GitHub, abrí **Settings > Pages**.
+2. En **Build and deployment > Source**, seleccioná **GitHub Actions**.
+3. Ejecutá el workflow **Publicar versiones en GitHub Pages**.
+4. Usá la URL raíz para V1 y agregá `/v2/` para revisar V2.
 
 ## Incorporación en Google Sites
 
@@ -43,4 +52,3 @@ La interfaz, estilos y lógica están contenidos en `index.html`. La aplicación
 
 - SheetJS para leer y generar planillas.
 - Google Fonts para la tipografía.
-
